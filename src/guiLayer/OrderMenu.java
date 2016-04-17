@@ -18,6 +18,10 @@ import java.awt.event.ActionEvent;
 
 import modelLayer.*;
 import controlLayer.*;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class OrderMenu extends JFrame {
 
@@ -31,7 +35,10 @@ public class OrderMenu extends JFrame {
 	private Order order = new Order();
 	private ArrayList<CopyProduct> products = new ArrayList<CopyProduct>();
 	private ProductController prdctr = new ProductController();
-
+	private JTable table;
+	private JLabel lblFound;
+	private Product product;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -63,9 +70,9 @@ public class OrderMenu extends JFrame {
 		lblOrderid.setBounds(23, 42, 86, 16);
 		contentPane.add(lblOrderid);
 		
-		JLabel lblCustomerid = new JLabel("CustomerID:");
-		lblCustomerid.setBounds(23, 91, 86, 16);
-		contentPane.add(lblCustomerid);
+		JLabel lblCustomer = new JLabel("CustomerID:");
+		lblCustomer.setBounds(23, 91, 86, 16);
+		contentPane.add(lblCustomer);
 		
 		textField = new JTextField();
 		textField.setBounds(144, 39, 116, 22);
@@ -128,23 +135,44 @@ public class OrderMenu extends JFrame {
 				pressBuy();
 			}
 		});
-		btnBuy.setBounds(273, 298, 97, 25);
+		btnBuy.setBounds(382, 241, 97, 25);
 		contentPane.add(btnBuy);
 		
-		JButton btnAddCustomer = new JButton("Add Customer");
-		btnAddCustomer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addCustomer();
+		JButton btnFind_1 = new JButton("Find");
+		btnFind_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pressFindProduct();
 			}
 		});
-		btnAddCustomer.setBounds(310, 87, 116, 25);
-		contentPane.add(btnAddCustomer);
+		btnFind_1.setBounds(273, 193, 97, 25);
+		contentPane.add(btnFind_1);
+		
+		lblFound = new JLabel("");
+		lblFound.setBounds(394, 197, 85, 16);
+		contentPane.add(lblFound);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(45, 293, 398, 102);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Name", "Price"
+			}
+		));
+		scrollPane.setViewportView(table);
 	}
 	
 	private void findOrder(){
 		int input = Integer.parseInt(textField.getText());
 		Order order = ordctr.findOrder(input);
 		System.out.println(order.toString());
+		textField_1.setText(""+order.getCustomer().getCustomerID());
+		products = order.getListOfItems();
+		textField_3.setText(""+getTotalPrice());
 	}
 	
 	private void addToCart(){
@@ -153,13 +181,13 @@ public class OrderMenu extends JFrame {
 		String input = textField_2.getText();
 		
 		try{
-			Product product = new Product();
-			
-			product = prdctr.findProductByName(input);
 			
 			CopyProduct cpProduct = new CopyProduct(product, amount);
 			
 			products.add(cpProduct);
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{""+product.getProductID(), product.getName(), ""+product.getSalesPrice()});
 			
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
@@ -176,12 +204,6 @@ public class OrderMenu extends JFrame {
 		
 	}
 	
-	private void addCustomer(){
-		
-		order.setCustomer(new Customer(Integer.parseInt(textField_1.getText())));
-		
-	}
-	
 	private float getTotalPrice(){
 		float total = 0;
 		
@@ -191,4 +213,16 @@ public class OrderMenu extends JFrame {
 		return total;
 	}
 	
+	private void pressFindProduct(){
+		
+		String findName = textField_2.getText();
+		product = null;
+		product = prdctr.findProductByName(findName);
+		if(product == null){
+			lblFound.setText("Product NOT Found");
+		}else{
+			textField_3.setText(""+product.getSalesPrice());
+			lblFound.setText("Product Found");
+		}
+	}
 }
