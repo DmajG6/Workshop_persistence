@@ -13,6 +13,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -35,6 +36,7 @@ public class OrderMenu extends JFrame {
 	private Order order = new Order();
 	private ArrayList<CopyProduct> products = new ArrayList<CopyProduct>();
 	private ProductController prdctr = new ProductController();
+	private CustomerController cstCtr = new CustomerController();
 	private JTable table;
 	private JLabel lblFound;
 	private Product product;
@@ -102,7 +104,7 @@ public class OrderMenu extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new JButton("Add to Cart");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addToCart();
@@ -160,7 +162,7 @@ public class OrderMenu extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Name", "Price"
+				"ID", "Name", "Amount", "Price"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -178,7 +180,6 @@ public class OrderMenu extends JFrame {
 	private void addToCart(){
 		
 		int amount = Integer.parseInt(textField_4.getText());
-		String input = textField_2.getText();
 		
 		try{
 			
@@ -187,7 +188,7 @@ public class OrderMenu extends JFrame {
 			products.add(cpProduct);
 			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(new Object[]{""+product.getProductID(), product.getName(), ""+product.getSalesPrice()});
+			model.addRow(new Object[]{""+product.getProductID(), ""+textField_2.getText(),""+amount , ""+(amount*product.getSalesPrice())});
 			
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
@@ -200,8 +201,13 @@ public class OrderMenu extends JFrame {
 	
 	private void pressBuy(){
 		
-		ordctr.createOrder(order.getCustomer(), "not delivered", "15651354", "one=time", getTotalPrice(), "now", products);
+		if(!textField_1.getText().isEmpty()){
 		
+			ordctr.createOrder(cstCtr.findCustomer(textField_1.getText()), "not delivered", ""+LocalDateTime.now(), "one=time", getTotalPrice(), "now", products);
+			
+		}else{
+			
+		}
 	}
 	
 	private float getTotalPrice(){
