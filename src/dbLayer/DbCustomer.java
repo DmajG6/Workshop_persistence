@@ -17,7 +17,7 @@ public class DbCustomer {
 		int rc = -1;
 		String query = "";
 		query = "SELECT MAX(customerID)"
-				+ "FROM Customer Table";
+				+ "FROM [Customer Table]";
 		System.out.println("insert : " + query);
 		try {
 			ResultSet results;
@@ -46,7 +46,7 @@ public class DbCustomer {
 	public int insertCustomer(Customer customer){
 		int rc = -1;
 		String query = "";
-		query = "INSERT INTO Customer (CustomerID, firstName, lastName, zip, address, phoneNo, type, active) VALUES (" 
+		query = "INSERT INTO [Customer Table] (CustomerID, firstName, lastName, zip, address, phoneNo, type, active) VALUES (" 
 		+ customer.getCustomerID() + ",'"
 		+ customer.getFirstName() + "',"
 		+ customer.getLastName() + ","
@@ -76,7 +76,7 @@ public class DbCustomer {
 	}
 	
 	public Customer findCustomer(String name) {
-		String wClause = "  name = '" + name + "'";
+		String wClause = "  lastName = '" + name + "'";
 		return singleWhere(wClause);
 	}
 	
@@ -86,7 +86,7 @@ public class DbCustomer {
 	}
 	
 	public int updateCustomer(String firstName, Customer customer) {
-		String q = "update Customer set customerID = ?, firstName = ?, lastName = ?, zip = ?, address = ?, phoneNo = ? type = ?, active = ? where name='" + customer.getFirstName()+"'";
+		String q = "update [Customer Table] set customerID = ?, firstName = ?, lastName = ?, zip = ?, address = ?, phoneNo = ? type = ?, active = ? where name='" + customer.getFirstName()+"'";
 		int res = 0;
 		try (PreparedStatement s = DbConnection.getInstance().getDBcon()
 				.prepareStatement(q)) {
@@ -157,7 +157,7 @@ public class DbCustomer {
 		
 		// method to build the query
 		private String buildQuery(String wClause) {
-			String query = "SELECT *  FROM Customer";
+			String query = "SELECT *  FROM [Customer Table]";
 
 			if (wClause.length() > 0)
 				query = query + " WHERE " + wClause;
