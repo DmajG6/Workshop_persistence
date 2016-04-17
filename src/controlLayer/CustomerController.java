@@ -3,10 +3,12 @@ package controlLayer;
 import java.util.ArrayList;
 import modelLayer.Customer;
 import modelLayer.Order;
+import dbLayer.DbCustomer;
 
 public class CustomerController {
 	
-	private ArrayList <Customer> customers;
+	private ArrayList <Customer> customers = new ArrayList<Customer>();
+	private DbCustomer dbc = new DbCustomer();
 	
 	public Customer createCustomer(int customerId, String firstName, String lastName, String zip, String address, String city, String active, String phoneNo, byte type){
 		Customer customer = new Customer(customerId, firstName, lastName, zip, address, phoneNo, type, active, new ArrayList<Order>(), city);
@@ -15,13 +17,8 @@ public class CustomerController {
 	}
 	
 	public Customer findCustomer(String name){
-		Customer customer = null;
-		for(int index = 0; index < customers.size(); index++){
-			customer = customers.get(index);
-			if(customer.getLastName().equals(name)){
-				break;
-			}
-		}
+		Customer customer = dbc.findCustomer(name);
+		
 		return customer;
 		}
 	
