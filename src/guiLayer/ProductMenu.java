@@ -17,14 +17,19 @@ import modelLayer.*;
 public class ProductMenu extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtf_name;
+	private JTextField txtf_price;
+	private JTextField txtf_stock;
+	private JTextField txtf_warranty;
+	private JTextField txtf_country;
 
 	private ProductController prdctr = new ProductController();
+	private JTextField txtf_salesPrice;
+	private JTextField txtf_rentPrice;
+	private JTextField txtf_type;
+	private JTextField txtf_description;
+	private JTextField txtf_supplierID;
+	private JTextField txtf_id;
 	
 	/**
 	 * Launch the application.
@@ -53,23 +58,14 @@ public class ProductMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(141, 110, 116, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtf_name = new JTextField();
+		txtf_name.setBounds(139, 75, 116, 22);
+		contentPane.add(txtf_name);
+		txtf_name.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(73, 113, 56, 16);
+		lblName.setBounds(32, 78, 97, 16);
 		contentPane.add(lblName);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(141, 75, 116, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(73, 78, 56, 16);
-		contentPane.add(lblId);
 		
 		JButton btnFind = new JButton("Find");
 		btnFind.addActionListener(new ActionListener() {
@@ -80,40 +76,40 @@ public class ProductMenu extends JFrame {
 		btnFind.setBounds(290, 109, 97, 25);
 		contentPane.add(btnFind);
 		
-		JLabel lblPrice = new JLabel("Price");
-		lblPrice.setBounds(73, 148, 56, 16);
-		contentPane.add(lblPrice);
+		JLabel lblPurchasePrice = new JLabel("Purchase price");
+		lblPurchasePrice.setBounds(32, 108, 117, 16);
+		contentPane.add(lblPurchasePrice);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(141, 145, 116, 22);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		txtf_price = new JTextField();
+		txtf_price.setBounds(139, 107, 116, 22);
+		contentPane.add(txtf_price);
+		txtf_price.setColumns(10);
 		
 		JLabel lblAmountInStock = new JLabel("Amount in Stock");
-		lblAmountInStock.setBounds(32, 187, 97, 16);
+		lblAmountInStock.setBounds(32, 199, 97, 16);
 		contentPane.add(lblAmountInStock);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(141, 184, 116, 22);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		txtf_stock = new JTextField();
+		txtf_stock.setBounds(139, 196, 116, 22);
+		contentPane.add(txtf_stock);
+		txtf_stock.setColumns(10);
 		
 		JLabel lblWarranty = new JLabel("Warranty");
-		lblWarranty.setBounds(73, 222, 56, 16);
+		lblWarranty.setBounds(32, 229, 76, 16);
 		contentPane.add(lblWarranty);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(141, 219, 116, 22);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		txtf_warranty = new JTextField();
+		txtf_warranty.setBounds(139, 226, 116, 22);
+		contentPane.add(txtf_warranty);
+		txtf_warranty.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(141, 260, 116, 22);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
+		txtf_country = new JTextField();
+		txtf_country.setBounds(139, 259, 116, 22);
+		contentPane.add(txtf_country);
+		txtf_country.setColumns(10);
 		
 		JLabel lblCountry = new JLabel("Country");
-		lblCountry.setBounds(73, 263, 56, 16);
+		lblCountry.setBounds(32, 262, 76, 16);
 		contentPane.add(lblCountry);
 		
 		JButton btnCreate = new JButton("Create");
@@ -124,22 +120,83 @@ public class ProductMenu extends JFrame {
 		});
 		btnCreate.setBounds(290, 74, 97, 25);
 		contentPane.add(btnCreate);
+		
+		JLabel lblSalesPrice = new JLabel("Sales price");
+		lblSalesPrice.setBounds(32, 140, 92, 14);
+		contentPane.add(lblSalesPrice);
+		
+		txtf_salesPrice = new JTextField();
+		txtf_salesPrice.setBounds(139, 136, 116, 22);
+		contentPane.add(txtf_salesPrice);
+		txtf_salesPrice.setColumns(10);
+		
+		JLabel lblRentPrice = new JLabel("Rent Price");
+		lblRentPrice.setBounds(32, 172, 76, 14);
+		contentPane.add(lblRentPrice);
+		
+		txtf_rentPrice = new JTextField();
+		txtf_rentPrice.setBounds(139, 169, 116, 20);
+		contentPane.add(txtf_rentPrice);
+		txtf_rentPrice.setColumns(10);
+		
+		JLabel lblType = new JLabel("Type");
+		lblType.setBounds(32, 289, 66, 14);
+		contentPane.add(lblType);
+		
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setBounds(32, 314, 76, 14);
+		contentPane.add(lblDescription);
+		
+		txtf_type = new JTextField();
+		txtf_type.setBounds(139, 286, 116, 20);
+		contentPane.add(txtf_type);
+		txtf_type.setColumns(10);
+		
+		txtf_description = new JTextField();
+		txtf_description.setBounds(139, 311, 116, 20);
+		contentPane.add(txtf_description);
+		txtf_description.setColumns(10);
+		
+		JLabel lblSupplierId = new JLabel("Supplier ID");
+		lblSupplierId.setBounds(32, 340, 76, 14);
+		contentPane.add(lblSupplierId);
+		
+		txtf_supplierID = new JTextField();
+		txtf_supplierID.setBounds(139, 337, 116, 20);
+		contentPane.add(txtf_supplierID);
+		txtf_supplierID.setColumns(10);
+		
+		JLabel lblProductId = new JLabel("Product ID");
+		lblProductId.setBounds(32, 40, 76, 14);
+		contentPane.add(lblProductId);
+		
+		txtf_id = new JTextField();
+		txtf_id.setEditable(false);
+		txtf_id.setBounds(136, 37, 116, 20);
+		contentPane.add(txtf_id);
+		txtf_id.setColumns(10);
 	}
 	
 	private void findProduct(){
-		String input = textField.getText();
+		String input = txtf_name.getText();
 		Product product = prdctr.findProductByName(input);
-		textField_1.setText(""+product.getProductID());
-		textField_2.setText(""+product.getSalesPrice());
-		textField_3.setText(""+product.getMinStock());
-		textField_4.setText(""+product.getWarranty());
-		textField_5.setText(""+product.getCountryOfOrigin());
+		if(product!= null){
+		txtf_id.setText(""+product.getProductID());
+		txtf_price.setText(""+product.getPurchasePrice());
+		txtf_salesPrice.setText(""+product.getSalesPrice());
+		txtf_rentPrice.setText(""+product.getRentPrice());
+		txtf_country.setText(""+product.getCountryOfOrigin());
+		txtf_stock.setText(""+product.getMinStock());
+		txtf_supplierID.setText(""+product.getSupplier().supplierID());
+		txtf_warranty.setText(""+product.getWarranty());
+		txtf_type.setText(""+product.getProductType());
+		txtf_description.setText(""+product.getTypeDescription());
+		}
 	}
 	
 	private void createProduct(){
 		
-		prdctr.createProduct(textField.getText(), 00, Integer.parseInt(textField_2.getText()), 00, textField_5.getText(), Integer.parseInt(textField_3.getText()), new Supplier(101), Integer.parseInt(textField_4.getText()), "1", "1");
+		prdctr.createProduct(txtf_name.getText(), Float.parseFloat(txtf_price.getText()), Float.parseFloat(txtf_salesPrice.getText()), Float.parseFloat(txtf_rentPrice.getText()), txtf_country.getText(), Integer.parseInt(txtf_stock.getText()), new Supplier(Integer.parseInt(txtf_supplierID.getText())), Integer.parseInt(txtf_warranty.getText()),txtf_type.getText(), txtf_description.getText());
 		
 	}
-	
 }

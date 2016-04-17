@@ -8,11 +8,21 @@ public class Supplier {
 	private int phoneNumber;
 	private String email;
 	private int supplierID;
+	private int zip;
 	
 	// constructor 
 	
+	public int getZip() {
+		return zip;
+	}
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
 	public Supplier(int id){
+		super();
 		this.supplierID = id;
+	}
+	public Supplier(){
 	}
 	
 	

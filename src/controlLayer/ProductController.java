@@ -34,10 +34,11 @@ public class ProductController {
 		}
 		return null;
 	}
+
 	
 	public Product createProduct(String name, float purchasePrice, float salesPrice, float rentPrice, String countryOfOrigin, int minStock, Supplier supplier, int warranty, String productType, String typeDescription){
 		Product product = new Product();
-		product.setProductID(dbProduct.getNewID() + 1);
+		product.setProductID(0);
 		product.setName(name);
 		product.setPurchasePrice(purchasePrice);
 		product.setSalesPrice(salesPrice);
