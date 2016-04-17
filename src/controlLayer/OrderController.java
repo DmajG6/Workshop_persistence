@@ -2,7 +2,6 @@ package controlLayer;
 
 import modelLayer.*;
 
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import dbLayer.DbCopyProduct;

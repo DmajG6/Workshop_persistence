@@ -169,6 +169,7 @@ public class DbProduct {
 		Product productObj = new Product();
 		try {
 			productObj.setProductID(results.getInt("productID"));
+			productObj.setName(results.getString("name"));
 			productObj.setPurchasePrice(results.getFloat("purchasePrice"));
 			productObj.setSalesPrice(results.getFloat("salesPrice"));
 			productObj.setRentPrice(results.getFloat("rentPrice"));
@@ -179,6 +180,7 @@ public class DbProduct {
 			productObj.setProductType(results.getString("productType"));
 			productObj.setTypeDescription(results.getString("typeDescription"));
 
+			System.out.println(productObj.toString());
 		} catch (Exception e) {
 			System.out.println("Error in building the product object");
 		}

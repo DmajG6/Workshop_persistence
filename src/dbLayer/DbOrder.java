@@ -101,13 +101,13 @@ public class DbOrder {
 	public int insertOrder(Order order){
 		int rc = -1;
 		String query = "";
-		query = "INSERT INTO Order (orderID, customer, deliveryStatus, deliveryDate, orderType, amount, dateOfPurchase) VALUES (" 
-		+ order.getOrderID() + ",'"
-		+ order.getCustomer().getCustomerID() + "',"
-		+ order.getDeliveryStatus() + ","
-		+ order.getDeliveryDate() + ","
-		+ order.getOrderType() + ",'"
-		+ order.getAmount() + "',"
+		query = "INSERT INTO OrderTable (orderID, customerID, deliveryStatus, deliveryDate, orderType, amount, dateOfPurchase) VALUES (" 
+		+ order.getOrderID() + ","
+		+ order.getCustomer().getCustomerID() + ",'"
+		+ order.getDeliveryStatus() + "',"
+		+ order.getDeliveryDate().length() + ",'"
+		+ order.getOrderType() + "',"
+		+ order.getAmount() + ",'"
 		+ order.getDateOfPurchase()+ "') ";
 		
 		System.out.println("insert : " + query);
@@ -129,6 +129,7 @@ public class DbOrder {
 		int rc = -1;
 		String query = "";
 		query = "SELECT MAX(orderID) "
+				+ "AS highest "
 				+ "FROM OrderTable";
 		System.out.println("insert : " + query);
 		try {
@@ -142,7 +143,8 @@ public class DbOrder {
 			results = stmt.executeQuery(query);
 			
 			if (results.next()) {
-				rc = results.getInt("orderID");
+				rc = results.getInt("highest");
+				rc++;
 			}
 				stmt.close();
 			
