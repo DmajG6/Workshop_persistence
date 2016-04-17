@@ -42,6 +42,7 @@ public void setProductID(int productID){
   }
   
   
+  
   public void setName(String name){
 	  this.name = name;
   }
@@ -122,4 +123,14 @@ public void setProductID(int productID){
 		return typeDescription;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", name=" + name + ", purchasePrice=" + purchasePrice
+				+ ", salesPrice=" + salesPrice + ", rentPrice=" + rentPrice + ", countryOfOrigin=" + countryOfOrigin
+				+ ", minStock=" + minStock + ", supplier=" + supplier + ", warranty=" + warranty + ", productType="
+				+ productType + ", typeDescription=" + typeDescription + "]";
+	}
+
+	
+	
 }
