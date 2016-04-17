@@ -1,6 +1,5 @@
 package guiLayer;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -19,8 +16,6 @@ import java.awt.event.ActionEvent;
 
 import modelLayer.*;
 import controlLayer.*;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
