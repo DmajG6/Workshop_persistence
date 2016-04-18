@@ -101,14 +101,17 @@ public class DbOrder {
 	public int insertOrder(Order order){
 		int rc = -1;
 		String query = "";
-		query = "INSERT INTO OrderTable (orderID, customerID, deliveryStatus, deliveryDate, orderType, amount, dateOfPurchase) VALUES (" 
+		int date = 45616;
+		int amount = (int) order.getAmount();
+		query = "INSERT INTO OrderTable (orderID, customerID, deliveryStatus, deliveryDate, orderType, amount, active, date/time) VALUES (" 
 		+ order.getOrderID() + ","
 		+ order.getCustomer().getCustomerID() + ",'"
 		+ order.getDeliveryStatus() + "',"
 		+ order.getDeliveryDate().length() + ",'"
 		+ order.getOrderType() + "',"
-		+ order.getAmount() + ",'"
-		+ order.getDateOfPurchase()+ "') ";
+		+ amount + ",'"
+		+ "yes',"
+				+ date+") ";
 		
 		System.out.println("insert : " + query);
 		try {

@@ -60,8 +60,8 @@ public class DbCopyProduct {
 		
 		String query = "";
 		
-		query = "SELECT ProductID"
-				+ "FROM CopyProduct"
+		query = "SELECT productID "
+				+ "FROM CopyProductTable "
 				+ "WHERE name = '"+product.getName()+"'"
 				+ " salesPrice = "+product.getSalesPrice()
 				+ " rentPrice = "+product.getRentPrice()
@@ -80,7 +80,7 @@ public class DbCopyProduct {
 			results = stmt.executeQuery(query);
 			
 			if (results.next()) {
-				rc = results.getInt("ProductID");
+				rc = results.getInt("productID");
 			}
 				stmt.close();
 		} catch (SQLException ex) {
@@ -94,8 +94,8 @@ public class DbCopyProduct {
 	private int getNewProductID(){
 		int rc = -1;
 		String query = "";
-		query = "SELECT MAX(ProductID)"
-				+ "FROM ProductTable";
+		query = "SELECT MAX(productID) "
+				+ "FROM CopyProductTable ";
 		System.out.println("insert : " + query);
 		try {
 			ResultSet results;
@@ -108,7 +108,7 @@ public class DbCopyProduct {
 			results = stmt.executeQuery(query);
 			
 			if (results.next()) {
-				rc = results.getInt("ProductID");
+				rc = results.getInt("productID");
 			}
 				stmt.close();
 			

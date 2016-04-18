@@ -9,7 +9,7 @@ public class Customer {
 	private String zip;
 	private String address;	
 	private String phoneNo;	
-	private byte type;	
+	private String type;	
 	private String active;
 	private ArrayList <Order> orders;
 	private String city;
@@ -24,7 +24,7 @@ public class Customer {
 	}
 	
 	public Customer(int customerID, String firstName, String lastName, String zip, String address, String phoneNo,
-			byte type, String active, ArrayList<Order> orders, String city) {
+			String type, String active, ArrayList<Order> orders, String city) {
 		super();
 		this.customerID = customerID;
 		this.firstName = firstName;
@@ -107,12 +107,12 @@ public class Customer {
 	}
 
 
-	public byte getType() {
+	public String getType() {
 		return type;
 	}
 
 
-	public void setType(byte type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

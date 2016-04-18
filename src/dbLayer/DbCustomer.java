@@ -96,7 +96,7 @@ public class DbCustomer {
 			s.setString(4, customer.getZip());
 			s.setString(5, customer.getAddress());
 			s.setString(6, customer.getPhoneNo());
-			s.setByte(7, customer.getType());
+			s.setString(7, customer.getType());
 			s.setString(8, customer.getActive());			
 			
 			res = s.executeUpdate();
@@ -172,15 +172,15 @@ public class DbCustomer {
 				customerObj.setCustomerID(results.getInt("customerID"));
 				customerObj.setFirstName(results.getString("firstName"));
 				customerObj.setLastName(results.getString("lastName"));
-				customerObj.setZip(results.getString("zip"));
+				customerObj.setZip(""+results.getInt("zip"));
 				customerObj.setAddress(results.getString("address"));
-				customerObj.setPhoneNo(results.getString("phoneNo"));
-				customerObj.setType(results.getByte("type"));
+				customerObj.setPhoneNo(""+results.getString("phoneNo"));
+				customerObj.setType(results.getString("type"));
 				customerObj.setActive(results.getString("active"));
 				
 
 			} catch (Exception e) {
-				System.out.println("Error in building the product object");
+				System.out.println("Error in building the customer object");
 			}
 			return customerObj;
 		}
